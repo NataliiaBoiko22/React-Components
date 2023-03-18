@@ -1,0 +1,150 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.card-field {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 30px;
+  margin-top: 150px;
+}
+.search-container {
+  display: flex;
+  position: fixed;
+  top: 15px;
+  right: 45%;
+  align-items: center;
+  justify-content: center;
+}
+
+.search-input {
+  padding: 10px;
+  border: 1px solid gray;
+  border-radius: 5px;
+  margin-right: 10px;
+}
+
+.search-button {
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  cursor: pointer;
+}
+.back-button {
+  display: flex;
+  position: fixed;
+  top: 100px;
+  left: 20px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  cursor: pointer;
+  margin-left: 0;
+}
+.main-card {
+  display: flex;
+  flex-direction: column;
+
+  width: 300px;
+  max-height: 450px;
+  transition: all 0.3s ease;
+  overflow: hidden;
+  padding: 5px 0;
+  align-items: center;
+  justify-content: start;
+  border: 1px solid #4caf50;
+  border-radius: 8px;
+  padding: 5px;
+}
+.expanded {
+  max-height: none;
+}
+.main-card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+.main-card h3 {
+  font-size: 1.5rem;
+  margin-bottom: 5px;
+}
+/* .main-card .more-info {
+  font-size: 0.8rem;
+  color: blue;
+  margin-top: 10px;
+  cursor: pointer;
+} */
+.main-card p.info {
+  margin-top: 5px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  /* display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical; */
+}
+
+.info-expended {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+/* ///////////////////////////////////////////// */
+.animal-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 20px;
+  margin: 10px;
+  width: 300px;
+  height: 400px;
+}
+
+.animal-card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+.animal-card h3 {
+  font-size: 1.5rem;
+  margin-bottom: 5px;
+}
+
+.animal-card p {
+  font-size: 1rem;
+  margin-bottom: 10px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+/* .animal-card .more-info {
+  font-size: 0.8rem;
+  color: blue;
+  margin-top: 10px;
+  cursor: pointer;
+} */
+
+.animal-info-button {
+  margin-top: 10px;
+  padding: 10px;
+  border-radius: 5px;
+  background-color: #4caf50cc;
+  color: white;
+  cursor: pointer;
+}
+/* ............................ */
