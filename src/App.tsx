@@ -10,8 +10,8 @@ const App: React.FC = () => {
     <BrowserRouter>
       <Header />
       <Routes>
-        <Route path="/main" element={<Main />} />
-        <Route path="/" element={<AboutUs />} />
+        <Route path="react-components/main" element={<Main />} />
+        <Route path="react-components/" element={<AboutUs />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>
