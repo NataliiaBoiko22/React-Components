@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./header.css";
+import "./styles.css";
 import { Navigate } from "react-router-dom";
 
 interface Animal {
