@@ -1,0 +1,10 @@
+.message {
+  margin-top: 150px;
+  font-size: 36px;
+  padding: 20px;
+  color: rgb(57, 56, 56);
+}
+.notfound {
+  font-style: italic;
+  font-size: 28px;
+}

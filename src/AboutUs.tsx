@@ -1,16 +1,16 @@
-import { useLocation } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
 import React from "react";
+import { useNavigate } from "react-router-dom";
+
 import "./aboutUs.css";
 function AboutUsPage() {
   const navigate = useNavigate();
 
   const handleClick = () => {
-    navigate("/");
+    navigate("/main");
   };
   return (
     <div className="wrapper">
-      <h1>Hello</h1>
+      <h1>Hello !</h1>
 
       <h2>Explore the Animal Kingdom</h2>
       <div className="main">

@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import "./styles.css";
 function Header() {
@@ -7,10 +7,10 @@ function Header() {
       <nav>
         <ul>
           <li>
-            <Link to="/">Main</Link>
+            <Link to="/main">Main</Link>
           </li>
           <li>
-            <Link to="/about">About Us</Link>
+            <Link to="/">About Us</Link>
           </li>
         </ul>
       </nav>

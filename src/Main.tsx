@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./header.css";
-import { useNavigate } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 
 interface Animal {
   name: string;
@@ -8,110 +8,6 @@ interface Animal {
   image: string;
   info: string;
 }
-
-const Main: React.FC = () => {
-  const navigate = useNavigate();
-
-  const handleNotFound = () => {
-    navigate("*");
-    return null;
-  };
-
-  const [searchTerm, setSearchTerm] = useState<string>("");
-  const [filteredAnimals, setFilteredAnimals] = useState<Animal[]>(animals);
-  const [showSearchResults, setShowSearchResults] = useState<boolean>(false);
-
-  const handleSearch = () => {
-    const filteredAnimals = animals.filter((animal) =>
-      animal.name.toLowerCase().includes(searchTerm.toLowerCase())
-    );
-    setFilteredAnimals(filteredAnimals);
-    setShowSearchResults(filteredAnimals.length > 0);
-  };
-
-  const handleBack = () => {
-    setShowSearchResults(false);
-    setSearchTerm("");
-  };
-
-  const [isExpanded, setIsExpanded] = useState(false);
-
-  const toggleInfo = () => {
-    setIsExpanded((prev) => !prev);
-  };
-
-  return (
-    <div className="wrapper">
-      <div className="search-container">
-        <input
-          type="text"
-          placeholder="Search by animal name"
-          value={searchTerm}
-          onChange={(event) => setSearchTerm(event.target.value)}
-          className="search-input"
-        />
-        <button className="search-button" onClick={handleSearch}>
-          Search
-        </button>
-      </div>
-      {showSearchResults ? (
-        <div className="card-field">
-          <button className="back-button" onClick={handleBack}>
-            Back
-          </button>
-          {filteredAnimals.length !== 0
-            ? filteredAnimals.map((animal) => (
-                <div
-                  className={`main-card ${isExpanded ? "expanded" : ""}`}
-                  key={animal.name}>
-                  <img
-                    src={animal.image}
-                    alt={animal.name}
-                    width="300"
-                    height="250"
-                  />
-                  <h3>{animal.name}</h3>
-                  <p>{animal.species}</p>
-                  <p className="info">
-                    {isExpanded
-                      ? animal.info
-                      : `${animal.info.slice(0, 100)}...`}
-                  </p>
-                  <button className="animal-info-button" onClick={toggleInfo}>
-                    {isExpanded ? "Hide info" : "Show more"}
-                  </button>
-                </div>
-              ))
-            : handleNotFound()}
-        </div>
-      ) : (
-        <div className="card-field">
-          {animals.map((animal) => (
-            <div
-              className={`main-card ${isExpanded ? "expanded" : ""}`}
-              key={animal.name}>
-              <img
-                src={animal.image}
-                alt={animal.name}
-                width="300"
-                height="250"
-              />
-              <h3>{animal.name}</h3>
-              <p>{animal.species}</p>
-              <p className="info">
-                {isExpanded ? animal.info : `${animal.info.slice(0, 60)}...`}
-              </p>
-
-              <button className="animal-info-button" onClick={toggleInfo}>
-                {isExpanded ? "Hide info" : "Show more"}
-              </button>
-            </div>
-          ))}
-        </div>
-      )}
-    </div>
-  );
-};
 const animals: Animal[] = [
   {
     name: "Lion",
@@ -176,4 +72,100 @@ const animals: Animal[] = [
     image: "https://source.unsplash.com/800x600/?piegon",
   },
 ];
+const Main: React.FC = () => {
+  const [searchTerm, setSearchTerm] = useState<string>("");
+  const [filteredAnimals, setFilteredAnimals] = useState<Animal[]>(animals);
+  const [showSearchResults, setShowSearchResults] = useState<boolean>(false);
+  const [isExpanded, setIsExpanded] = useState(false);
+  const [searchResultsEmpty, setSearchResultsEmpty] = useState<boolean>(false);
+
+  const handleSearch = () => {
+    const filteredAnimals = animals.filter((animal) =>
+      animal.name.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+    setFilteredAnimals(filteredAnimals);
+    setShowSearchResults(filteredAnimals.length > 0);
+    setSearchResultsEmpty(filteredAnimals.length === 0);
+  };
+
+  const handleBack = () => {
+    setShowSearchResults(false);
+    setSearchTerm("");
+    setSearchResultsEmpty(false);
+  };
+
+  const toggleInfo = () => {
+    setIsExpanded((prev) => !prev);
+  };
+
+  return (
+    <div className="wrapper">
+      <div className="search-container">
+        <input
+          type="text"
+          placeholder="Search by animal name"
+          value={searchTerm}
+          onChange={(event) => setSearchTerm(event.target.value)}
+          className="search-input"
+        />
+        <button className="search-button" onClick={handleSearch}>
+          Search
+        </button>
+      </div>
+      {searchResultsEmpty ? (
+        <Navigate to="/404" />
+      ) : showSearchResults ? (
+        <div className="card-field">
+          <button className="back-button" onClick={handleBack}>
+            Back
+          </button>
+          {filteredAnimals.map((animal) => (
+            <div
+              className={`main-card ${isExpanded ? "expanded" : ""}`}
+              key={animal.name}>
+              <img
+                src={animal.image}
+                alt={animal.name}
+                width="300"
+                height="250"
+              />
+              <h3>{animal.name}</h3>
+              <p>{animal.species}</p>
+              <p className="info">
+                {isExpanded ? animal.info : `${animal.info.slice(0, 100)}...`}
+              </p>
+              <button className="animal-info-button" onClick={toggleInfo}>
+                {isExpanded ? "Hide info" : "Show more"}
+              </button>
+            </div>
+          ))}
+        </div>
+      ) : (
+        <div className="card-field">
+          {animals.map((animal) => (
+            <div
+              className={`main-card ${isExpanded ? "expanded" : ""}`}
+              key={animal.name}>
+              <img
+                src={animal.image}
+                alt={animal.name}
+                width="300"
+                height="250"
+              />
+              <h3>{animal.name}</h3>
+              <p>{animal.species}</p>
+              <p className="info">
+                {isExpanded ? animal.info : `${animal.info.slice(0, 60)}...`}
+              </p>
+
+              <button className="animal-info-button" onClick={toggleInfo}>
+                {isExpanded ? "Hide info" : "Show more"}
+              </button>
+            </div>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+};
 export default Main;
