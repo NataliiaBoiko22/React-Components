@@ -14,7 +14,7 @@ function NotFoundPage() {
         Back
       </button>
       <span>
-        Unfortunately, your request did not return any results. Try again!
+        Unfortunately, your request did not return any results. Go to MAIN!
       </span>
       <p className="notfound">404 Page Not Found</p>
     </div>
