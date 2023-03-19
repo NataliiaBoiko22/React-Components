@@ -12,7 +12,7 @@ const App: React.FC = () => {
       <Routes>
         <Route path="react-components/main" element={<Main />} />
         <Route path="react-components/" element={<AboutUs />} />
-        <Route path="*" element={<NotFound />} />
+        <Route path="react-components/*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>
   );
