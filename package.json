@@ -25,7 +25,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -b react-component -d buildgit branch"
   },
   "eslintConfig": {
     "extends": [
@@ -49,6 +51,8 @@
     "@typescript-eslint/eslint-plugin": "^5.55.0",
     "@typescript-eslint/parser": "^5.55.0",
     "eslint": "^8.36.0",
-    "eslint-plugin-react": "^7.32.2"
-  }
+    "eslint-plugin-react": "^7.32.2",
+    "gh-pages": "^5.0.0"
+  },
+  "homepage": "https://nataliiaboiko22.github.io/react-components/"
 }
