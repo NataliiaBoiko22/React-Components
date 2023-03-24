@@ -1,4 +1,3 @@
-import React from "react";
 import { useNavigate } from "react-router-dom";
 
 import "./aboutUs.css";
@@ -30,7 +29,8 @@ function AboutUsPage() {
         <img
           className="img"
           alt="Welcome image"
-          src="https://source.unsplash.com/800x600/?tiger"></img>
+          src="https://source.unsplash.com/800x600/?tiger"
+        ></img>
       </div>
     </div>
   );

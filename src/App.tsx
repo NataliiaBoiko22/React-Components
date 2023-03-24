@@ -1,9 +1,10 @@
 import React from "react";
-import Header from "./Header";
+import Header from "./components/Header";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import AboutUs from "./AboutUs";
-import NotFound from "./NotFound";
-import Main from "./Main";
+import AboutUs from "./components/AboutUs";
+import NotFound from "./components/NotFound";
+import Main from "./components/Main";
+import Forms from "./components/Forms";
 
 const App: React.FC = () => {
   return (
@@ -13,6 +14,7 @@ const App: React.FC = () => {
         <Route path="/main" element={<Main />} />
         <Route path="/" element={<AboutUs />} />
         <Route path="*" element={<NotFound />} />
+        <Route path="/forms" element={<Forms />} />
       </Routes>
     </BrowserRouter>
   );

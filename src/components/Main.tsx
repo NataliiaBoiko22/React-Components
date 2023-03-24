@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./header.css";
+import "./styles.css";
 import { Navigate } from "react-router-dom";
 
 interface Animal {
@@ -122,7 +122,8 @@ const Main: React.FC = () => {
           {filteredAnimals.map((animal) => (
             <div
               className={`main-card ${isExpanded ? "expanded" : ""}`}
-              key={animal.name}>
+              key={animal.name}
+            >
               <img
                 src={animal.image}
                 alt={animal.name}
@@ -145,7 +146,8 @@ const Main: React.FC = () => {
           {animals.map((animal) => (
             <div
               className={`main-card ${isExpanded ? "expanded" : ""}`}
-              key={animal.name}>
+              key={animal.name}
+            >
               <img
                 src={animal.image}
                 alt={animal.name}
