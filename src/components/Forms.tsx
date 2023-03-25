@@ -12,23 +12,28 @@ import {
   Upload,
   Button,
 } from "antd";
-import { UploadOutlined } from "@ant-design/icons";
 
 const { Option } = Select;
 
-const genderOptions = [
-  { label: "Male", value: "male" },
-  { label: "Female", value: "female" },
-];
-
 const countryOptions = [
-  { label: "USA", value: "usa" },
-  { label: "Canada", value: "canada" },
+  { label: "USA", value: "us" },
+  { label: "Canada", value: "can" },
+  { label: "Argentina", value: "arg" },
+  { label: "Bolivia", value: "bol" },
+  { label: "Brasil", value: "bras" },
+  { label: "Mexico", value: "mex" },
+  { label: "Uruguay", value: "urug" },
 ];
 
 const stateOptions = [
   { label: "New York", value: "ny" },
   { label: "California", value: "ca" },
+  { label: "Los Angeles", value: "la" },
+  { label: "Texas", value: "tex" },
+  { label: "Chicago", value: "ch" },
+  { label: "Houston", value: "hou" },
+  { label: "San Antonio", value: "sa" },
+  { label: "Lima", value: "li" },
 ];
 
 const validateMessages = {
@@ -61,7 +66,6 @@ export default function Subscribe() {
       labelCol={{ span: 6 }}
       wrapperCol={{ span: 12 }}
       onFinish={onFormSubmit}
-      // validateMessages={validateMessages}
     >
       <Form.Item
         name="firstName"
@@ -72,10 +76,6 @@ export default function Subscribe() {
       </Form.Item>
 
       <Form.Item name="lastName" label="Last Name">
-        <Input />
-      </Form.Item>
-
-      <Form.Item name="zipCode" label="Zip Code" rules={[{ required: true }]}>
         <Input />
       </Form.Item>
 
@@ -108,23 +108,8 @@ export default function Subscribe() {
       </Form.Item>
 
       <Form.Item name="consent" label="Consent" valuePropName="checked">
-        <Checkbox>
-          I consent to my personal data being collected and processed.
-        </Checkbox>
+        <Checkbox>OK.</Checkbox>
       </Form.Item>
-
-      <Form.Item name="gifts" label="Gifts">
-        <Checkbox.Group>
-          <Checkbox value="chocolate">Chocolate</Checkbox>
-          <Checkbox value="flowers">Flowers</Checkbox>
-          <Checkbox value="giftCard">Gift Card</Checkbox>
-        </Checkbox.Group>
-      </Form.Item>
-
-      <Form.Item name="gender" label="Gender">
-        <Checkbox.Group options={genderOptions} />
-      </Form.Item>
-
       <Form.Item
         name="notifications"
         label="Notifications"
