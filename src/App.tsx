@@ -4,7 +4,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import AboutUs from "./components/AboutUs";
 import NotFound from "./components/NotFound";
 import Main from "./components/Main";
-import Forms from "./components/Forms";
+import Forms from "./components/Form/Form";
 
 const App: React.FC = () => {
   return (

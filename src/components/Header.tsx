@@ -12,7 +12,7 @@ function Header() {
             <Link to="/">About Us</Link>
           </li>
           <li>
-            <Link to="/forms">Forms</Link>
+            <Link to="/forms">Support</Link>
           </li>
         </ul>
       </nav>

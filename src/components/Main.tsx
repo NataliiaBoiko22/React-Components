@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./styles.css";
 import { Navigate } from "react-router-dom";
-
+import { useNavigate } from "react-router-dom";
 interface Animal {
   name: string;
   species: string;
@@ -97,7 +97,11 @@ const Main: React.FC = () => {
   const toggleInfo = () => {
     setIsExpanded((prev) => !prev);
   };
+  const navigate = useNavigate();
 
+  const togglePage = () => {
+    navigate("/forms");
+  };
   return (
     <div className="wrapper">
       <div className="search-container">
@@ -142,29 +146,45 @@ const Main: React.FC = () => {
           ))}
         </div>
       ) : (
-        <div className="card-field">
-          {animals.map((animal) => (
-            <div
-              className={`main-card ${isExpanded ? "expanded" : ""}`}
-              key={animal.name}
+        <div className="main-wrapper">
+          <div className="support">
+            <p>
+              You can support the development of our website by clicking on the
+              button
+            </p>
+            <img title="arrow" src="../../assets/right-arrow.svg"></img>
+            <button
+              title="button"
+              className="support-button"
+              onClick={togglePage}
             >
-              <img
-                src={animal.image}
-                alt={animal.name}
-                width="300"
-                height="250"
-              />
-              <h3>{animal.name}</h3>
-              <p>{animal.species}</p>
-              <p className="info">
-                {isExpanded ? animal.info : `${animal.info.slice(0, 60)}...`}
-              </p>
+              Support
+            </button>
+          </div>
+          <div className="card-field">
+            {animals.map((animal) => (
+              <div
+                className={`main-card ${isExpanded ? "expanded" : ""}`}
+                key={animal.name}
+              >
+                <img
+                  src={animal.image}
+                  alt={animal.name}
+                  width="300"
+                  height="250"
+                />
+                <h3>{animal.name}</h3>
+                <p>{animal.species}</p>
+                <p className="info">
+                  {isExpanded ? animal.info : `${animal.info.slice(0, 60)}...`}
+                </p>
 
-              <button className="animal-info-button" onClick={toggleInfo}>
-                {isExpanded ? "Hide info" : "Show more"}
-              </button>
-            </div>
-          ))}
+                <button className="animal-info-button" onClick={toggleInfo}>
+                  {isExpanded ? "Hide info" : "Show more"}
+                </button>
+              </div>
+            ))}
+          </div>
         </div>
       )}
     </div>

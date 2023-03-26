@@ -8,7 +8,7 @@ function AboutUsPage() {
     navigate("/main");
   };
   return (
-    <div className="wrapper">
+    <div className="wrapper-about">
       <h1>Hello !</h1>
 
       <h2>Explore the Animal Kingdom</h2>
