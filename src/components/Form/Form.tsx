@@ -4,6 +4,7 @@ import "./form.css";
 import Input from "../Form/Input/Input";
 import Select from "../Form/Select/Select";
 import moment from "moment";
+
 interface FormProps {
   addNewUser: (user: IUser) => void;
 }
@@ -111,7 +112,7 @@ export default class Form extends React.Component<FormProps, FormState> {
   getDuration = (
     durationRefArray: React.RefObject<HTMLInputElement>[]
   ): string | null => {
-    let duration = null;
+    let duration = " ";
 
     durationRefArray.forEach((durationEl) => {
       if (durationEl.current?.checked) {
