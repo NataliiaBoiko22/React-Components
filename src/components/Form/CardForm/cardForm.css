@@ -1,0 +1,15 @@
+.wrapper {
+    display: flex;
+    flex-direction: row;
+    max-width: 95%;
+    border: 1px solid rgb(79, 115, 55);
+    border-radius: 10px;
+    height: 100%;
+    padding: 5px;
+  }
+  
+  .wrapper_img {
+   margin-right: 10px;
+
+  }
+  
