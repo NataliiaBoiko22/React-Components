@@ -1,39 +1,22 @@
-import React, { ChangeEvent } from "react";
+import React from "react";
 import "./input.css";
 
-interface Props {
-  reference: React.RefObject<HTMLInputElement>;
-  labelText: string;
-  name: string;
-  error?: string;
-  onChange: (event: ChangeEvent<HTMLInputElement>) => void;
+interface IProps extends React.HTMLProps<HTMLInputElement> {
+  title: string;
+  errorMess?: string | null;
 }
+const Input = React.forwardRef<HTMLInputElement, IProps>((props, ref) => {
+  const { title, errorMess, ...restProps } = props;
 
-class Input extends React.PureComponent<Props, object> {
-  constructor(props: Props) {
-    super(props);
-    this.state = {};
-  }
-
-  render() {
-    const { labelText, reference } = this.props;
-    return (
-      <label htmlFor="inp" className="inp">
-        <input
-          ref={reference}
-          autoComplete="new-password"
-          type="text"
-          id="inp"
-          placeholder="&nbsp;"
-        />
-        <span className="label">
-          {labelText}
-          <sup>*</sup>
-        </span>
-        <span className="focus-bg" />
+  return (
+    <div>
+      <label className="label">
+        {title}
+        <input className="inp" {...restProps} ref={ref} />
       </label>
-    );
-  }
-}
-
+      {errorMess && <span className="label">{errorMess}</span>}
+      <span className="focus-bg" />
+    </div>
+  );
+});
 export default Input;
