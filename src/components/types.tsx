@@ -18,12 +18,12 @@ export interface FormState {
   isSaved: boolean;
 }
 
-export interface Card {
-  name: string;
-  surname: string;
-  birthday: string;
-  file: File | null;
-  support: string;
-  duration: string;
-  agreement: boolean;
-}
+// export interface Card {
+//   name: string;
+//   surname: string;
+//   birthday: string;
+//   file: File | null;
+//   support: string;
+//   duration: string;
+//   agreement: boolean;
+// }

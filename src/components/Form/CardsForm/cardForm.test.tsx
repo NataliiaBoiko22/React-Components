@@ -1,7 +1,7 @@
 import React from "react";
 import { render } from "@testing-library/react";
 import { describe, it } from "vitest";
-import { CardsForm } from "./CardsForm";
+import CardsForm from "./CardsForm";
 
 describe("Users", () => {
   it("renders Users component", () => {
@@ -12,6 +12,7 @@ describe("Users", () => {
         birthday: "1990-03-15",
         support: "Money",
         duration: "One time",
+        agreement: true,
         file: undefined,
       },
       {
@@ -20,6 +21,7 @@ describe("Users", () => {
         birthday: "1990-03-15",
         support: "Money",
         duration: "One time",
+        agreement: true,
         file: undefined,
       },
     ];
