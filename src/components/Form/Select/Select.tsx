@@ -7,8 +7,8 @@ interface IProps extends React.HTMLProps<HTMLInputElement> {
 
 const Select = React.forwardRef<HTMLSelectElement, IProps>((props, ref) => {
   const { errorMess } = props;
-  const countries = ["Money", "Information", "Advertisement", "Other way"];
-  const countriesLayout = countries.map((support, index) => (
+  const support = ["Money", "Information", "Advertisement", "Other way"];
+  const supportLayout = support.map((support, index) => (
     <option value={support} key={index}>
       {support}
     </option>
@@ -29,7 +29,7 @@ const Select = React.forwardRef<HTMLSelectElement, IProps>((props, ref) => {
           <option title="title" disabled value="" style={{ display: "none" }}>
             -- Select your support --
           </option>
-          {countriesLayout}
+          {supportLayout}
         </select>
       </label>
       {errorMess && <span>{errorMess}</span>}

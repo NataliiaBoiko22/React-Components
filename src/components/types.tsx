@@ -5,6 +5,7 @@ export interface IUser {
   file: Blob | undefined;
   support: string | undefined;
   duration: string | null;
+  agreement: boolean;
 }
 export interface FormState {
   nameError: null | string;
@@ -15,4 +16,14 @@ export interface FormState {
   fileError: null | string;
   agreementError: null | string;
   isSaved: boolean;
+}
+
+export interface Card {
+  name: string;
+  surname: string;
+  birthday: string;
+  file: File | null;
+  support: string;
+  duration: string;
+  agreement: boolean;
 }
