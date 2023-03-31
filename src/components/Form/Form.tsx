@@ -39,23 +39,23 @@ const Form: React.FC<FormProps> = ({ addNewUser }) => {
   }, [isSaved]);
 
   const validateText = (value: string, fieldName: string) => {
-    const namePattern = /^[a-zA-Zа-яА-ЯёЁ\s]+$/;
+    const namePattern = /^[a-zA-Zа-яА-Я\s]{2,}$/;
     if (!namePattern.test(value)) {
       setErrors((prevErrors) => ({
         ...prevErrors,
-        [fieldName]: "Please enter a valid value",
+        [fieldName]: "Please enter at least two characters",
       }));
-      return true;
+      return false;
     } else {
       setErrors((prevErrors) => ({
         ...prevErrors,
         [fieldName]: "",
       }));
-      return false;
+      return true;
     }
   };
 
-  const validateBirthday = (vvalue: string, fieldName: string) => {
+  const validateBirthday = (value: string, fieldName: string) => {
     if (birthday.current === null) {
       return false;
     }
@@ -66,13 +66,13 @@ const Form: React.FC<FormProps> = ({ addNewUser }) => {
         ...prevErrors,
         [fieldName]: "You must be at least 14 years old",
       }));
-      return true;
+      return false;
     } else {
       setErrors((prevErrors) => ({
         ...prevErrors,
         [fieldName]: "",
       }));
-      return false;
+      return true;
     }
   };
   const validateRequired = (value: string, fieldName: string) => {
@@ -81,13 +81,13 @@ const Form: React.FC<FormProps> = ({ addNewUser }) => {
         ...prevErrors,
         [fieldName]: "This field is required",
       }));
-      return true;
+      return false;
     } else {
       setErrors((prevErrors) => ({
         ...prevErrors,
         [fieldName]: "",
       }));
-      return false;
+      return true;
     }
   };
 
@@ -97,13 +97,13 @@ const Form: React.FC<FormProps> = ({ addNewUser }) => {
         ...prevErrors,
         [fieldName]: "You should upload file ",
       }));
-      return true;
+      return false;
     } else {
       setErrors((prevErrors) => ({
         ...prevErrors,
         [fieldName]: "",
       }));
-      return false;
+      return true;
     }
   };
 
@@ -146,10 +146,10 @@ const Form: React.FC<FormProps> = ({ addNewUser }) => {
     isFormValid = validateFile(fileName, "fileError") && isFormValid;
 
     if (!isFormValid) {
-      //   return;
-      // }
-      // if (form.current instanceof HTMLFormElement) {
-      // const formData = new FormData(form.current);
+      console.log("notisvalid");
+      return;
+    }
+    if (form.current instanceof HTMLFormElement) {
       const newUser: IUser = {
         name: nameValue,
         surname: surnameValue,
@@ -162,6 +162,7 @@ const Form: React.FC<FormProps> = ({ addNewUser }) => {
       addNewUser(newUser);
       setIsSaved(true);
       form.current?.reset();
+      console.log("thisisconsole");
     }
   };
   return (
@@ -170,13 +171,18 @@ const Form: React.FC<FormProps> = ({ addNewUser }) => {
         <p className="title">Please fill in the form fields</p>
         <div className="form__row">
           <label htmlFor="name">Name:</label>
-          <Input title="" type="text" id="name" name="name" ref={name} />
+          <br />
           {errors.nameError && (
             <span className="error">{errors.nameError}</span>
           )}
+          <Input title="" type="text" id="name" name="name" ref={name} />
         </div>
         <div>
           <label htmlFor="surname">Surname:</label>
+          <br />
+          {errors.surnameError && (
+            <span className="error">{errors.surnameError}</span>
+          )}
           <Input
             title=""
             type="text"
@@ -184,12 +190,13 @@ const Form: React.FC<FormProps> = ({ addNewUser }) => {
             name="surname"
             ref={surname}
           />
-          {errors.surnameError && (
-            <span className="error">{errors.surnameError}</span>
-          )}
         </div>
         <div>
           <label htmlFor="birthday">Date of Birth:</label>
+          <br />
+          {errors.birthdayError && (
+            <span className="error">{errors.birthdayError}</span>
+          )}
           <Input
             title=""
             type="date"
@@ -197,23 +204,19 @@ const Form: React.FC<FormProps> = ({ addNewUser }) => {
             name="birthday"
             ref={birthday}
           />
-          {errors.birthdayError && (
-            <span className="error">{errors.birthdayError}</span>
-          )}
         </div>
         <div>
-          <Select id="support" name="support" ref={support} />
-          {/* <option value="">Select</option>
-            <option value="Technical">Technical</option>
-            <option value="Sales">Sales</option>
-            <option value="General">General</option>
-          </Select> */}
           {errors.supportError && (
             <span className="error">{errors.supportError}</span>
           )}
+          <Select id="support" name="support" ref={support} />
         </div>
         <div className="form_row_radio">
           <label>Support Duration:</label>
+          <br />
+          {errors.durationError && (
+            <span className="error">{errors.durationError}</span>
+          )}
           <div>
             <Input
               title=""
@@ -238,14 +241,15 @@ const Form: React.FC<FormProps> = ({ addNewUser }) => {
             />
             <label htmlFor="continuously">Continuously</label>
           </div>
-          {errors.durationError && (
-            <span className="error">{errors.durationError}</span>
-          )}
         </div>
         <div className="form_row">
           <label className="agree_desc">
             I agree to the terms and conditions
           </label>
+          <br />
+          {errors.agreementError && (
+            <span className="error">{errors.agreementError}</span>
+          )}
           <Input
             className="agree_checkbox"
             title=""
@@ -254,12 +258,13 @@ const Form: React.FC<FormProps> = ({ addNewUser }) => {
             name="agreement"
             ref={agreement}
           />
-          {errors.agreementError && (
-            <span className="error">{errors.agreementError}</span>
-          )}
         </div>
         <div className="file_field">
           <label htmlFor="file">Upload a file:</label>
+          <br />
+          {errors.fileError && (
+            <span className="error">{errors.fileError}</span>
+          )}
           <Input
             title=""
             type="file"
@@ -268,9 +273,6 @@ const Form: React.FC<FormProps> = ({ addNewUser }) => {
             ref={file}
             className="file_input"
           />
-          {errors.fileError && (
-            <span className="error">{errors.fileError}</span>
-          )}
         </div>
         <div className="buttons">
           <button type="submit" className="submitbtn">

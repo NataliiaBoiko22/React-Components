@@ -28,9 +28,18 @@ align-items: center;
 .card-field {
   display: flex;
   justify-content: center;
+  align-items: center;
   flex-wrap: wrap;
   gap: 30px;
-  margin-top: 30px;
+  margin-top:30px;
+}
+.card-field-small {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 30px;
+  margin-top:130px;
 }
 .search-container {
   display: flex;
@@ -72,14 +81,13 @@ align-items: center;
 .main-card {
   display: flex;
   flex-direction: column;
-
+justify-content: center;
   width: 300px;
   max-height: 450px;
   transition: all 0.3s ease;
   overflow: hidden;
   padding: 5px 0;
   align-items: center;
-  justify-content: start;
   border: 1px solid #4caf50;
   border-radius: 8px;
   padding: 5px;

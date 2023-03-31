@@ -119,7 +119,7 @@ const Main: React.FC = () => {
       {searchResultsEmpty ? (
         <Navigate to="/404" />
       ) : showSearchResults ? (
-        <div className="card-field">
+        <div className="card-field-small">
           <button className="back-button" onClick={handleBack}>
             Back
           </button>
