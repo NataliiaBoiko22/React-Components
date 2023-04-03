@@ -3,7 +3,7 @@ import moment from "moment";
 import "./form.css";
 import Input from "./Input/Input";
 import Select from "./Select/Select";
-import { Card, IUser } from "../types";
+import { IUser } from "../types";
 import { RefObject } from "react";
 interface FormProps {
   addNewUser: (user: IUser) => void;
