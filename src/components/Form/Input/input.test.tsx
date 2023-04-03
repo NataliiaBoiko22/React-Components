@@ -6,14 +6,8 @@ import Input from "./Input";
 describe("InputCustom", () => {
   it("renders InputCustom component", () => {
     const surname: React.RefObject<HTMLInputElement> = React.createRef();
-    const surnameError = "str";
     render(
-      <Input
-        title="Last Name:"
-        placeholder="Enter last name"
-        ref={surname}
-        errorMess={surnameError}
-      />
+      <Input title="Last Name:" placeholder="Enter last name" ref={surname} />
     );
   });
 });

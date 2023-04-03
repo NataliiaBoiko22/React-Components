@@ -103,7 +103,7 @@ const Main: React.FC = () => {
     navigate("/forms");
   };
   return (
-    <div className="wrapper">
+    <div className="main-wrapper">
       <div className="search-container">
         <input
           type="text"

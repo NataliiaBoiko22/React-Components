@@ -1,8 +1,3 @@
-// import React from "react";
-// import { IUser } from "../../types";
-// import "./cardForm.css";
-
-import React from "react";
 import { IUser } from "../../types";
 import "./cardForm.css";
 
@@ -10,8 +5,8 @@ interface UserProps {
   user: IUser;
 }
 
-const CardForm: React.FC<UserProps> = (user) => {
-  const { name, surname, birthday, support, duration, file } = user.user;
+const CardForm = ({ user }: UserProps) => {
+  const { name, surname, birthday, support, duration, file } = user;
   const imgSrc = file ? URL.createObjectURL(file) : "";
 
   return (

@@ -1,18 +1,15 @@
 import React from "react";
+import { UseFormRegister } from "react-hook-form";
 import "./select.css";
 
-interface IProps extends React.HTMLProps<HTMLInputElement> {
-  errorMess?: string | null;
+interface IFormInput {
+  support: string;
 }
 
-const Select = React.forwardRef<HTMLSelectElement, IProps>((props, ref) => {
-  const { errorMess } = props;
-  const support = ["Money", "Information", "Advertisement", "Other way"];
-  const supportLayout = support.map((support, index) => (
-    <option value={support} key={index}>
-      {support}
-    </option>
-  ));
+const Select = React.forwardRef<
+  HTMLSelectElement,
+  ReturnType<UseFormRegister<IFormInput>>
+>(({ onChange, name }, ref) => {
   return (
     <div>
       <label>
@@ -21,18 +18,18 @@ const Select = React.forwardRef<HTMLSelectElement, IProps>((props, ref) => {
           className="select"
           title="Support"
           aria-label="Type of support"
-          name="support"
+          name={name}
           id="support"
           ref={ref}
           defaultValue=""
+          onChange={onChange}
         >
-          <option title="title" disabled value="" style={{ display: "none" }}>
-            -- Select your support --
-          </option>
-          {supportLayout}
+          <option value="Money"> Money </option>
+          <option value="Information">Information</option>
+          <option value="Advertisement">Advertisement</option>
+          <option value="Other way">Other way</option>
         </select>
       </label>
-      {errorMess && <span>{errorMess}</span>}
     </div>
   );
 });

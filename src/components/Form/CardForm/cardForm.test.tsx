@@ -11,7 +11,6 @@ describe("User", () => {
       birthday: "1990-03-15",
       support: "Money",
       duration: "One time",
-      agreement: true,
       file: undefined,
     };
     render(<CardForm user={user} key={1} />);

@@ -1,12 +1,27 @@
+import { RefCallback } from "react";
+import { UseFormRegister } from "react-hook-form";
 import { render } from "@testing-library/react";
-import React from "react";
 import { describe, it } from "vitest";
 import Select from "./Select";
 
-describe("SelectCustom", () => {
-  it("renders SelectCustom component", () => {
-    const duration: React.RefObject<HTMLSelectElement> = React.createRef();
-    const durationError = "str";
-    render(<Select ref={duration} errorMess={durationError} />);
+interface IFormInput {
+  support: string;
+}
+
+describe("Select", () => {
+  it("renders Select component", () => {
+    const supportRefCallback: RefCallback<HTMLSelectElement> = (element) => {
+      supportRef.current = element;
+    };
+    const supportRef = { current: null as HTMLSelectElement | null };
+
+    const register: ReturnType<UseFormRegister<IFormInput>> = {
+      onChange: () => Promise.resolve(true),
+      onBlur: () => Promise.resolve(true),
+      name: "support",
+      ref: supportRefCallback,
+    };
+
+    render(<Select {...register} />);
   });
 });
