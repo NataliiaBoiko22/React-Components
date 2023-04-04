@@ -8,7 +8,7 @@ interface Animal {
   image: string;
   info: string;
 }
-const animals: Animal[] = [
+export const animals: Animal[] = [
   {
     name: "Lion",
     species: "Wild Animal(mammal)",
