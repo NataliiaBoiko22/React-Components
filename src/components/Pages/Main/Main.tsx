@@ -17,17 +17,26 @@ const App: React.FC = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [showModal, setShowModal] = useState<boolean>(false);
   const [largeImageURL, setLargeImageURL] = useState<string>("");
+  const [likes, setLikes] = useState<string>("");
+  const [downloads, setDownloads] = useState<string>("");
+  const [user, setUser] = useState<string>("");
+  const [tags, setTags] = useState<string>("");
 
   useEffect(() => {
     if (search !== "") {
       setIsLoading(true);
       setCards([]);
       setPage(1);
-
+      localStorage.setItem("searchValue", search);
       fetchSearch(search, 1)
         .then((res) => setCards(res))
         .catch((err) => setError(err))
         .finally(() => setIsLoading(false));
+    } else {
+      const savedSearchValue = localStorage.getItem("searchValue");
+      if (savedSearchValue) {
+        setSearch(savedSearchValue);
+      }
     }
   }, [search]);
 
@@ -55,15 +64,28 @@ const App: React.FC = () => {
       .catch((err) => setError(err))
       .finally(() => setIsLoading(false));
   };
-
-  const modalShow = (url: string) => {
+  const modalShow = (
+    url: string,
+    likes: string,
+    downloads: string,
+    user: string,
+    tags: string
+  ) => {
     setShowModal(true);
     setLargeImageURL(url);
+    setLikes(likes);
+    setDownloads(downloads);
+    setUser(user);
+    setTags(tags);
   };
 
   const modalClose = () => {
     setShowModal(false);
     setLargeImageURL("");
+    setLikes("");
+    setDownloads("");
+    setUser("");
+    setTags("");
   };
 
   return (
@@ -72,7 +94,16 @@ const App: React.FC = () => {
       {cards.length > 0 && <ImageGallery cards={cards} onShow={modalShow} />}
       {isLoading && <Loader />}
       {cards.length > 0 && !isLoading && <Button onClick={clickButton} />}
-      {showModal && <Modal onClose={modalClose} image={largeImageURL} />}
+      {showModal && (
+        <Modal
+          onClose={modalClose}
+          image={largeImageURL}
+          likes={likes}
+          downloads={downloads}
+          user={user}
+          tags={tags}
+        />
+      )}
     </div>
   );
 };

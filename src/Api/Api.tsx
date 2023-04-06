@@ -3,6 +3,9 @@ interface Image {
   webformatURL: string;
   tags: string;
   largeImageURL: string;
+  likes: string;
+  downloads: string;
+  user: string;
 }
 const fetchImage = (
   query = "",
@@ -10,7 +13,7 @@ const fetchImage = (
   key = "33010792-9be0a9a8fe82c8e51d7216432"
 ): Promise<Image[]> => {
   return fetch(
-    `https://pixabay.com/api/?q=${query}&page=${page}&key=${key}&image_type=photo&orientation=horizontal&per_page=12`
+    `https://pixabay.com/api/?q=${query}&page=${page}&key=${key}&image_type=photo&orientation=horizontal&per_page=18`
   )
     .then(
       (x) =>
@@ -23,6 +26,9 @@ const fetchImage = (
         webformatURL: image.webformatURL,
         largeImageURL: image.largeImageURL,
         tags: image.tags,
+        likes: image.likes,
+        downloads: image.downloads,
+        user: image.user,
       }));
     });
 };

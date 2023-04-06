@@ -7,24 +7,38 @@ export interface ImageCard {
   largeImageURL: string;
   webformatURL: string;
   tags: string;
+  likes: string;
+  downloads: string;
+  user: string;
 }
 
 interface Props {
-  onShow: (url: string) => void;
+  onShow: (
+    url: string,
+    likes: string,
+    domnloads: string,
+    user: string,
+    tags: string
+  ) => void;
   cards: ImageCard[];
 }
 const ImageGallery = ({ cards, onShow }: Props) => {
   return (
     <ul className="ImageGallery">
-      {cards.map(({ webformatURL, largeImageURL, id, tags }) => (
-        <ImageGalleryItem
-          key={id}
-          webformatURL={webformatURL}
-          largeImageURL={largeImageURL}
-          onShow={onShow}
-          tags={tags}
-        />
-      ))}
+      {cards.map(
+        ({ webformatURL, largeImageURL, id, tags, likes, downloads, user }) => (
+          <ImageGalleryItem
+            key={id}
+            webformatURL={webformatURL}
+            largeImageURL={largeImageURL}
+            onShow={(url) => onShow(url, likes, downloads, user, tags)}
+            tags={tags}
+            likes={likes}
+            user={user}
+            downloads={downloads}
+          />
+        )
+      )}
     </ul>
   );
 };
@@ -37,8 +51,11 @@ ImageGallery.propTypes = {
       largeImageURL: PropTypes.string.isRequired,
       webformatURL: PropTypes.string.isRequired,
       tags: PropTypes.string.isRequired,
+      likes: PropTypes.string.isRequired,
+      downloads: PropTypes.string.isRequired,
+      user: PropTypes.string.isRequired,
     })
-  ),
+  ).isRequired,
 };
 
 export default ImageGallery;
