@@ -1,4 +1,4 @@
-.wrapper {
+/* .wrapper {
   display: flex;
   flex-direction: column;
 }
@@ -108,19 +108,12 @@ justify-content: center;
   font-size: 1.5rem;
   margin-bottom: 5px;
 }
-/* .main-card .more-info {
-  font-size: 0.8rem;
-  color: blue;
-  margin-top: 10px;
-  cursor: pointer;
-} */
+
 .main-card p.info {
   margin-top: 5px;
   overflow: hidden;
   text-overflow: ellipsis;
-  /* display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical; */
+
 }
 
 .info-expended {
@@ -128,7 +121,6 @@ justify-content: center;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
 }
-/* ///////////////////////////////////////////// */
 .animal-card {
   display: flex;
   flex-direction: column;
@@ -163,12 +155,6 @@ justify-content: center;
   white-space: nowrap;
 }
 
-/* .animal-card .more-info {
-  font-size: 0.8rem;
-  color: blue;
-  margin-top: 10px;
-  cursor: pointer;
-} */
 
 .animal-info-button {
   margin-top: 10px;
@@ -178,9 +164,9 @@ justify-content: center;
   color: white;
   cursor: pointer;
 }
-/* ............................ */
+
 .form-field{
 margin-top: 150px;
 width: 500px;
 text-align: center;
-}
+} */
