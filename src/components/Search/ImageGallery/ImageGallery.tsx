@@ -7,16 +7,16 @@ export interface ImageCard {
   largeImageURL: string;
   webformatURL: string;
   tags: string;
-  likes: string;
-  downloads: string;
+  likes: number;
+  downloads: number;
   user: string;
 }
 
 interface Props {
   onShow: (
     url: string,
-    likes: string,
-    domnloads: string,
+    likes: number,
+    domnloads: number,
     user: string,
     tags: string
   ) => void;
@@ -51,8 +51,8 @@ ImageGallery.propTypes = {
       largeImageURL: PropTypes.string.isRequired,
       webformatURL: PropTypes.string.isRequired,
       tags: PropTypes.string.isRequired,
-      likes: PropTypes.string.isRequired,
-      downloads: PropTypes.string.isRequired,
+      likes: PropTypes.number.isRequired,
+      downloads: PropTypes.number.isRequired,
       user: PropTypes.string.isRequired,
     })
   ).isRequired,

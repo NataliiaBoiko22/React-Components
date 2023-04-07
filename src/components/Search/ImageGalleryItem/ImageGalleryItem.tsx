@@ -4,10 +4,10 @@ import "./imageGalleryItem.css";
 interface ImageGalleryItemProps {
   webformatURL: string;
   largeImageURL: string;
-  onShow: (url: string, likes: string, user: string, tags: string) => void;
+  onShow: (url: string, likes: number, user: string, tags: string) => void;
   tags: string;
-  likes: string;
-  downloads: string;
+  likes: number;
+  downloads: number;
   user: string;
 }
 

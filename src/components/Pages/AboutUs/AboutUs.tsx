@@ -14,12 +14,10 @@ function AboutUsPage() {
       <div className="main">
         <div className="description">
           <p className="description-p">
-            Discover fascinating facts about all kinds of animals, from the
-            smallest insects to the largest mammals. Browse our collection of
-            articles, photos, and videos to learn more about the world`s amazing
-            creatures.
-            <br /> So far, our collection is not very large, since this small
-            site was developed as part of an assignment in RSShcool!
+            This website is developed as part an assignment in the courses of
+            the RSShcool. Here you can find the images according to the entered
+            query in the search field. The <strong>Pixabay </strong>service was
+            used as a source of information.
           </p>
           <a href="#" className="btn" onClick={handleClick}>
             Get Started

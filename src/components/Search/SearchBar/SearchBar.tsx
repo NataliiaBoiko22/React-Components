@@ -1,9 +1,8 @@
-import React, { useState, ChangeEvent, FormEvent } from "react";
+import React, { useState, useEffect, ChangeEvent, FormEvent } from "react";
 import "./searchBar.css";
-import Notiflix from "notiflix";
-
 type SearchbarProps = {
   onSubmit: (search: string) => void;
+  value?: string;
 };
 
 const Searchbar: React.FC<SearchbarProps> = ({ onSubmit }) => {
@@ -12,13 +11,20 @@ const Searchbar: React.FC<SearchbarProps> = ({ onSubmit }) => {
   const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
     setSearch(event.target.value.toLowerCase());
   };
+  useEffect(() => {
+    const savedSearch = localStorage.getItem("search");
+    if (savedSearch) {
+      setSearch(savedSearch);
+    }
+  }, []);
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (search.trim() === "") {
-      Notiflix.Notify.info("Please enter your request in the input field");
+      alert("Please enter your request in the input field");
       return;
     }
+    localStorage.setItem("search", search);
     onSubmit(search);
   };
 

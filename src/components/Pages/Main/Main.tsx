@@ -17,28 +17,38 @@ const App: React.FC = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [showModal, setShowModal] = useState<boolean>(false);
   const [largeImageURL, setLargeImageURL] = useState<string>("");
-  const [likes, setLikes] = useState<string>("");
-  const [downloads, setDownloads] = useState<string>("");
+  const [likes, setLikes] = useState<number>(0);
+  const [downloads, setDownloads] = useState<number>(0);
   const [user, setUser] = useState<string>("");
   const [tags, setTags] = useState<string>("");
+  const [showNoResults, setShowNoResults] = useState<boolean>(false);
 
   useEffect(() => {
     if (search !== "") {
       setIsLoading(true);
       setCards([]);
       setPage(1);
-      localStorage.setItem("searchValue", search);
       fetchSearch(search, 1)
         .then((res) => setCards(res))
         .catch((err) => setError(err))
         .finally(() => setIsLoading(false));
     } else {
-      const savedSearchValue = localStorage.getItem("searchValue");
+      const savedSearchValue = localStorage.getItem("search");
       if (savedSearchValue) {
         setSearch(savedSearchValue);
       }
     }
   }, [search]);
+
+  useEffect(() => {
+    setIsLoading(true);
+    setCards([]);
+    setPage(1);
+    fetchImage("", 1)
+      .then((res) => setCards(res))
+      .catch((err) => setError(err))
+      .finally(() => setIsLoading(false));
+  }, []);
 
   const fetchSearch = async (
     value: string,
@@ -46,6 +56,7 @@ const App: React.FC = () => {
   ): Promise<ImageCard[]> => {
     try {
       const res = await fetchImage(value, page);
+      setShowNoResults(res.length === 0);
       return res;
     } catch (err: unknown) {
       if (err instanceof Error) {
@@ -66,8 +77,8 @@ const App: React.FC = () => {
   };
   const modalShow = (
     url: string,
-    likes: string,
-    downloads: string,
+    likes: number,
+    downloads: number,
     user: string,
     tags: string
   ) => {
@@ -82,18 +93,23 @@ const App: React.FC = () => {
   const modalClose = () => {
     setShowModal(false);
     setLargeImageURL("");
-    setLikes("");
-    setDownloads("");
+    setLikes(0);
+    setDownloads(0);
     setUser("");
     setTags("");
   };
 
   return (
     <div className="App">
-      <Searchbar onSubmit={setSearch} />
+      <Searchbar onSubmit={setSearch} value={search} />
       {cards.length > 0 && <ImageGallery cards={cards} onShow={modalShow} />}
       {isLoading && <Loader />}
-      {cards.length > 0 && !isLoading && <Button onClick={clickButton} />}
+      {showNoResults && (
+        <p className="message"> We did not find anything for your request. </p>
+      )}
+      {cards.length > 0 && !isLoading && !showNoResults && (
+        <Button onClick={clickButton} />
+      )}
       {showModal && (
         <Modal
           onClose={modalClose}

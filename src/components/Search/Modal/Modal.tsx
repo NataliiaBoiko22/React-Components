@@ -4,8 +4,8 @@ import PropTypes from "prop-types";
 
 interface ModalProps {
   image: string;
-  likes: string;
-  downloads: string;
+  likes: number;
+  downloads: number;
   user: string;
   tags: string;
   onClose: () => void;
@@ -37,21 +37,38 @@ const Modal: React.FC<ModalProps> = ({
     };
   }, [onClose]);
 
+  const handleOverlayClick = (event: React.MouseEvent<HTMLDivElement>) => {
+    if (event.target === event.currentTarget) {
+      onClose();
+    }
+  };
+
   return (
-    <div className="overlay" onClick={onClose}>
+    <div className="overlay" onClick={handleOverlayClick}>
       {isLoading && <div className="loading">Loading...</div>}
       <div
         className="modal"
         style={{ visibility: isLoading ? "hidden" : "visible" }}
       >
+        <button className="close" onClick={onClose}>
+          &#10005;
+        </button>
         <img src={image} alt="" onLoad={handleImageLoaded} />
         <div className="ImageGalleryItemInfo">
-          <span className="ImageGalleryItemLikes">Likes: {likes}</span>
-          <span className="ImageGalleryItemLikes">Downloads: {downloads}</span>
-          <span className="ImageGalleryItemDescription">
-            Name of contributor: {user}
+          <span className="ImageGalleryItemLikes">
+            <strong>Likes: </strong> {likes}
           </span>
-          <span className="ImageGalleryItemDescription">Tags: {tags}</span>
+          <span className="ImageGalleryItemLikes">
+            <strong>Downloads: </strong>
+            {downloads}
+          </span>
+          <span className="ImageGalleryItemDescription">
+            <strong>Name of contributor: </strong>
+            {user}
+          </span>
+          <span className="ImageGalleryItemDescription">
+            <strong>Tags: </strong> {tags}
+          </span>
         </div>
       </div>
     </div>
@@ -61,8 +78,8 @@ const Modal: React.FC<ModalProps> = ({
 Modal.propTypes = {
   onClose: PropTypes.func.isRequired,
   image: PropTypes.string.isRequired,
-  likes: PropTypes.string.isRequired,
-  downloads: PropTypes.string.isRequired,
+  likes: PropTypes.number.isRequired,
+  downloads: PropTypes.number.isRequired,
   user: PropTypes.string.isRequired,
   tags: PropTypes.string.isRequired,
 };

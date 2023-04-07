@@ -3,8 +3,8 @@ interface Image {
   webformatURL: string;
   tags: string;
   largeImageURL: string;
-  likes: string;
-  downloads: string;
+  likes: number;
+  downloads: number;
   user: string;
 }
 const fetchImage = (
