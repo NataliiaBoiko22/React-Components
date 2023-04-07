@@ -1,7 +1,7 @@
 import React from "react";
 import "./imageGalleryItem.css";
 
-interface ImageGalleryItemProps {
+export interface ImageGalleryItemProps {
   webformatURL: string;
   largeImageURL: string;
   onShow: (url: string, likes: number, user: string, tags: string) => void;
@@ -20,16 +20,25 @@ const ImageGalleryItem: React.FC<ImageGalleryItemProps> = ({
   user,
 }) => {
   return (
-    <li className="ImageGalleryItem">
-      <div className="ImageGalleryItemContent">
+    <li className="ImageGalleryItem" data-testid="imageGalleryItem">
+      <div
+        className="ImageGalleryItemContent"
+        data-testid="imageGalleryItemContent"
+      >
         <img
           className="ImageGalleryItemImage"
           onClick={() => onShow(largeImageURL, likes, user, tags)}
           src={webformatURL}
           alt={tags}
+          data-testid="imageGalleryItemImage"
         />
         <div className="ImageGalleryItemInfo">
-          <span className="ImageGalleryItemLikes">Likes &#9733; {likes}</span>
+          <span
+            className="ImageGalleryItemLikes"
+            data-testid="imageGalleryItemLikes"
+          >
+            Likes &#9733; {likes}
+          </span>
         </div>
       </div>
       <button

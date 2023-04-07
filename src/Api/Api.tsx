@@ -1,4 +1,4 @@
-interface Image {
+export interface Image {
   id: number;
   webformatURL: string;
   tags: string;
@@ -7,7 +7,7 @@ interface Image {
   downloads: number;
   user: string;
 }
-const fetchImage = (
+export const fetchImage = (
   query = "",
   page = 1,
   key = "33010792-9be0a9a8fe82c8e51d7216432"

@@ -22,9 +22,18 @@ interface Props {
   ) => void;
   cards: ImageCard[];
 }
+
 const ImageGallery = ({ cards, onShow }: Props) => {
+  console.log(cards.map((card) => card.id));
+  console.log(cards.map((card) => card.webformatURL));
+  console.log(cards.map((card) => card.largeImageURL));
+  console.log(cards.map((card) => card.user));
+  console.log(cards.map((card) => card.likes));
+
+  console.log(cards.map((card) => card.downloads));
+
   return (
-    <ul className="ImageGallery">
+    <ul className="ImageGallery" data-testid="image-gallery">
       {cards.map(
         ({ webformatURL, largeImageURL, id, tags, likes, downloads, user }) => (
           <ImageGalleryItem

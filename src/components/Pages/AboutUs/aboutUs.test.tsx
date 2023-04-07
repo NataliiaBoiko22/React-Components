@@ -14,13 +14,13 @@ describe("AboutUsPage component", () => {
     expect(helloText).toBeInTheDocument();
   });
 
-  it("should render Explore the Animal Kingdom text", () => {
+  it("should render Explore the Photos Kingdom text", () => {
     render(
       <BrowserRouter>
         <AboutUsPage />
       </BrowserRouter>
     );
-    const exploreText = screen.getByText(/explore the animal kingdom/i);
+    const exploreText = screen.getByText(/explore the photos kingdom/i);
     expect(exploreText).toBeInTheDocument();
   });
 
@@ -30,7 +30,7 @@ describe("AboutUsPage component", () => {
         <AboutUsPage />
       </BrowserRouter>
     );
-    const descriptionText = screen.getByText(/discover fascinating facts/i);
+    const descriptionText = screen.getByText(/website is developed as part/i);
     expect(descriptionText).toBeInTheDocument();
   });
 });

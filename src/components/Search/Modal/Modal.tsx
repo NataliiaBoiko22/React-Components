@@ -44,16 +44,17 @@ const Modal: React.FC<ModalProps> = ({
   };
 
   return (
-    <div className="overlay" onClick={handleOverlayClick}>
+    <div className="overlay" onClick={handleOverlayClick} data-testid="overlay">
       {isLoading && <div className="loading">Loading...</div>}
       <div
         className="modal"
         style={{ visibility: isLoading ? "hidden" : "visible" }}
+        data-testid="modal"
       >
-        <button className="close" onClick={onClose}>
+        <button className="close" onClick={onClose} data-testid="close">
           &#10005;
         </button>
-        <img src={image} alt="" onLoad={handleImageLoaded} />
+        <img src={image} alt="test-image.jpg" onLoad={handleImageLoaded} />
         <div className="ImageGalleryItemInfo">
           <span className="ImageGalleryItemLikes">
             <strong>Likes: </strong> {likes}

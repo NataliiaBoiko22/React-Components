@@ -10,7 +10,7 @@ function AboutUsPage() {
     <div className="wrapper-about">
       <h1>Hello !</h1>
 
-      <h2>Explore the Animal Kingdom</h2>
+      <h2>Explore the Photos Kingdom</h2>
       <div className="main">
         <div className="description">
           <p className="description-p">
