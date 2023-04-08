@@ -9,7 +9,7 @@ import ImageGallery, {
 } from "../../Search/ImageGallery/ImageGallery";
 import Modal from "../../Search/Modal/Modal";
 
-const App: React.FC = () => {
+const Main: React.FC = () => {
   const [search, setSearch] = useState<string>("");
   const [page, setPage] = useState<number>(1);
   const [cards, setCards] = useState<ImageCard[]>([]);
@@ -124,4 +124,4 @@ const App: React.FC = () => {
   );
 };
 
-export default App;
+export default Main;

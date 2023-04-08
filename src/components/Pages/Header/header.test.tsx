@@ -1,16 +1,20 @@
-import { render, screen } from "@testing-library/react";
-import { MemoryRouter } from "react-router-dom";
+import { test, expect } from "vitest";
+import { render } from "@testing-library/react";
 import Header from "./Header";
+import { BrowserRouter } from "react-router-dom";
 
-describe("Header", () => {
-  it("should display correct links", () => {
-    render(
-      <MemoryRouter>
-        <Header />
-      </MemoryRouter>
-    );
-    expect(screen.getByText("Main")).toHaveAttribute("href", "/main");
-    expect(screen.getByText("About Us")).toHaveAttribute("href", "/");
-    expect(screen.getByText("Support")).toHaveAttribute("href", "/forms");
-  });
+test("renders navigation links", () => {
+  const { getAllByRole } = render(
+    <BrowserRouter>
+      <Header />
+    </BrowserRouter>
+  );
+  const links = getAllByRole("link");
+  expect(links).toHaveLength(3);
+  expect(links[0]).toHaveTextContent("Main");
+  expect(links[0]).toHaveAttribute("href", "/main");
+  expect(links[1]).toHaveTextContent("About Us");
+  expect(links[1]).toHaveAttribute("href", "/");
+  expect(links[2]).toHaveTextContent("Support");
+  expect(links[2]).toHaveAttribute("href", "/forms");
 });

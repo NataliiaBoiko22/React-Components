@@ -9,6 +9,7 @@ describe("Modal", () => {
     downloads: 0,
     user: "",
     tags: "",
+    webformatURL: "",
     onClose: vi.fn(),
   };
 
