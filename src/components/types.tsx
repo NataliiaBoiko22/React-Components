@@ -1,12 +1,3 @@
-// export interface IUser {
-//   name: string | undefined;
-//   surname: string | undefined;
-//   birthday: string | undefined;
-//   file: Blob | undefined;
-//   support: string | undefined;
-//   duration: string | null;
-//   agreement: boolean;
-// }
 export interface FormState {
   nameError: null | string;
   surnameError: null | string;

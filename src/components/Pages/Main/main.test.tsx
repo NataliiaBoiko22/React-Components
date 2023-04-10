@@ -12,10 +12,5 @@ describe("Main component", () => {
     const searchInput = getByPlaceholderText("Search images and photos");
     fireEvent.change(searchInput, { target: { value: "Lion" } });
     fireEvent.click(getByText("Search"));
-    // expect(queryByText("Lion")).toBeInTheDocument();
-    // expect(queryByText("Monkey")).not.toBeInTheDocument();
-    // fireEvent.click(getByText("Back"));
-    // expect(queryByText("Lion")).toBeInTheDocument();
-    // expect(queryByText("Monkey")).toBeInTheDocument();
   });
 });
