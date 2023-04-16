@@ -1,0 +1,10 @@
+.main-container {
+    margin: 120px auto 20px;
+    display: grid;
+    grid-template-columns: 1fr;
+}
+.cards-container{
+margin: 0 auto;
+padding: 10px 20px;
+
+}
