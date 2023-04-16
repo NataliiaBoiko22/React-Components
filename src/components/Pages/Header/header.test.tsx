@@ -15,6 +15,6 @@ test("renders navigation links", () => {
   expect(links[0]).toHaveAttribute("href", "/main");
   expect(links[1]).toHaveTextContent("About Us");
   expect(links[1]).toHaveAttribute("href", "/");
-  expect(links[2]).toHaveTextContent("Support");
+  expect(links[2]).toHaveTextContent("Form");
   expect(links[2]).toHaveAttribute("href", "/forms");
 });

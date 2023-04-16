@@ -1,24 +1,29 @@
 import { render } from "@testing-library/react";
 import { Provider } from "react-redux";
 import { describe, it } from "vitest";
-import { IUser } from "../../types";
-import CardForm from "./CardForm";
 import { setupStore } from "../../../redux/store";
+import Card from "./Card";
 
 const store = setupStore();
-describe("User", () => {
+
+describe("Card", () => {
   it("renders Card component", () => {
-    const user: IUser = {
-      name: "string",
-      surname: "string",
-      birthday: "1000-03-15",
-      support: "Money",
-      duration: "One time",
-      file: undefined,
+    const props = {
+      item: {
+        id: 1,
+        title: "",
+        description: "",
+        price: 2,
+        stock: 3,
+        brand: "",
+        category: "",
+        thumbnail: "",
+        images: [""],
+      },
     };
     render(
       <Provider store={store}>
-        <CardForm user={user} key={1} />
+        <Card item={props.item} />
       </Provider>
     );
   });

@@ -1,0 +1,28 @@
+.card-item{
+  width:250px;
+  border: 1px solid;
+  border-radius: 5px;
+  padding: 5px;
+}
+  .card:nth-child(3n-1){
+      margin-left:20px;
+      margin-right:20px;
+  }
+  .card-img{
+    text-align: center;
+      margin-bottom: 20px;
+      overflow: hidden;
+  }
+  .card-img img{
+      width: 250px;
+      height: 200px;
+      object-fit: cover;
+      top: 0;
+      left: 0;
+  }
+  .card-title{
+  font-size: 24px;
+  color:rgb(77, 126, 72);
+  text-align: center;
+  font-weight: 700;
+  }

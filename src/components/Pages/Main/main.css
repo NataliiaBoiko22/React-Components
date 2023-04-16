@@ -1,14 +1,10 @@
-.App {
-    margin-top: 70px;
+.main-container {
+    margin: 120px auto 20px;
     display: grid;
     grid-template-columns: 1fr;
-    grid-gap: 16px;
-    padding-bottom: 24px;
 }
-.message{
-display: flex;
+.cards-container{
 margin: 0 auto;
-padding: 25px;
-border: 1px solid green;
-border-radius: 8px;
+padding: 10px 20px;
+
 }

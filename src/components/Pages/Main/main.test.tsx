@@ -1,16 +1,16 @@
-import { render, fireEvent } from "@testing-library/react";
-import { MemoryRouter } from "react-router-dom";
+import { render, screen } from "@testing-library/react";
 import Main from "./Main";
-
+import { Provider } from "react-redux";
+import { setupStore } from "../../../redux/store";
+const store = setupStore();
 describe("Main component", () => {
-  test("search button filters animals correctly", () => {
-    const { getByPlaceholderText, getByText } = render(
-      <MemoryRouter>
+  test("renders Cards component", () => {
+    render(
+      <Provider store={store}>
         <Main />
-      </MemoryRouter>
+      </Provider>
     );
-    const searchInput = getByPlaceholderText("Search images and photos");
-    fireEvent.change(searchInput, { target: { value: "Lion" } });
-    fireEvent.click(getByText("Search"));
+    const cardsElement = screen.getByTestId("home-section");
+    expect(cardsElement).toBeInTheDocument();
   });
 });

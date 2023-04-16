@@ -16,3 +16,21 @@ export interface IUser {
   support: string | undefined;
   duration: string | null;
 }
+
+export default interface IFormCard {
+  name: string;
+  birthday: string;
+  country: string;
+  file: string;
+  gender: string;
+}
+export interface IProducts {
+  id: number;
+  title: string;
+  description: string;
+  price: number;
+  brand: string;
+  category: string;
+  thumbnail: string;
+  images: string[];
+}

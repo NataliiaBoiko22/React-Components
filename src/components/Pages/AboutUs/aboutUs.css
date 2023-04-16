@@ -3,31 +3,3 @@
   margin: 120px 20px 0 20px;
   color: #323131;
 }
-.main {
-  display: flex;
-}
-.description-p {
-  font-size: 24px;
-}
-.btn {
-  display: inline-block;
-  padding: 12px 24px;
-  background-color: #333;
-  color: #fff;
-  text-decoration: none;
-  font-weight: bold;
-  border-radius: 5px;
-}
-.description {
-  width: 50%;
-}
-.btn:hover {
-  background-color: #555;
-}
-
-.img {
-  width: 35%;
-  height: 35%;
-  border: 4px solid #4caf50;
-  border-radius: 10px;
-}

@@ -3,15 +3,16 @@ import "./form.css";
 import Input from "./Input/Input";
 import Select from "./Select/Select";
 import { IUser } from "components/types";
+import { useAppDispatch } from "../../redux/hooks";
+import { formSlice } from "../../redux/formSlice";
 
-interface FormProps {
-  addNewUser: (user: IUser) => void;
-}
 type TUserCard = Omit<IUser, "file"> & {
   agreement: string;
   file: FileList;
 };
-const Form = ({ addNewUser }: FormProps) => {
+const Form = () => {
+  const { addNewUser } = formSlice.actions;
+  const dispatch = useAppDispatch();
   const {
     register,
     handleSubmit,
@@ -39,7 +40,7 @@ const Form = ({ addNewUser }: FormProps) => {
       duration: data.duration,
       file: data?.file?.[0],
     };
-    addNewUser(newUser);
+    dispatch(addNewUser(newUser));
     reset();
   };
 

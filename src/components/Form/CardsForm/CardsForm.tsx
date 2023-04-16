@@ -1,13 +1,9 @@
-import React from "react";
-import { IUser } from "./../../types";
+import { useAppSelector } from "../../../redux/hooks";
 import CardForm from "../CardForm/CardForm";
 import "./cardsForm.css";
 
-interface UsersProps {
-  users: IUser[];
-}
-
-const CardsForm: React.FC<UsersProps> = ({ users }) => {
+const CardsForm = () => {
+  const { users } = useAppSelector((state) => state.formReducer);
   const usersLayout = users.map((user, index) => (
     <CardForm user={user} key={index} />
   ));

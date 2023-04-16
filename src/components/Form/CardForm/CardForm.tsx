@@ -1,6 +1,5 @@
 import { IUser } from "../../types";
 import "./cardForm.css";
-
 interface UserProps {
   user: IUser;
 }

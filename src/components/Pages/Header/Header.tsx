@@ -1,5 +1,5 @@
 import { Link, useLocation } from "react-router-dom";
-import "./header.css";
+import "./Header.css";
 
 function Header() {
   const location = useLocation();
@@ -11,7 +11,7 @@ function Header() {
       case "/main":
         return "Main";
       case "/forms":
-        return "Support";
+        return "Form";
       default:
         return "";
     }
@@ -28,7 +28,7 @@ function Header() {
             <Link to="/">About Us</Link>
           </li>
           <li>
-            <Link to="/forms">Support</Link>
+            <Link to="/forms">Form</Link>
           </li>
         </ul>
         <h1>{getPageTitle()}</h1>
