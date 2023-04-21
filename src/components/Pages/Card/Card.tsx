@@ -17,13 +17,15 @@ const Card = (product: IProps) => {
   };
 
   return (
-    <div className="card-item" onClick={() => toggleModal()}>
-      <div className="card-img">
-        <img src={images[0]} alt="product" />
+    <>
+      <div className="card-item" onClick={() => toggleModal()}>
+        <div className="card-img">
+          <img src={images[0]} alt="product" />
+        </div>
+        <div className="title"> {title}</div>
+        <Modal id={modalID} isOpen={isModalOpen} onClose={toggleModal} />
       </div>
-      <div className="title"> {title}</div>
-      <Modal id={modalID} isOpen={isModalOpen} onClose={toggleModal} />
-    </div>
+    </>
   );
 };
 export default Card;

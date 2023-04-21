@@ -8,12 +8,14 @@ function NotFoundPage() {
     navigate("/main");
   };
   return (
-    <div className="notfound-wrapper">
-      <button className="back-button" onClick={handleBack}>
-        Back
-      </button>
-      <p className="notfound">404 Page Not Found</p>
-    </div>
+    <>
+      <div className="notfound-wrapper">
+        <button className="back-button" onClick={handleBack}>
+          Back
+        </button>
+        <p className="notfound">404 Page Not Found</p>
+      </div>
+    </>
   );
 }
 

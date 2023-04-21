@@ -21,15 +21,17 @@ const Cards = () => {
     return <div> Some error!</div>;
   }
   return (
-    <div className="cards-wrapper">
-      {result && result.products.length > 0 ? (
-        result.products.map((res) => {
-          return <Card key={res.id} item={res} />;
-        })
-      ) : (
-        <div>Sorry, there is no cards with this title</div>
-      )}
-    </div>
+    <>
+      <div className="cards-wrapper">
+        {result && result.products.length > 0 ? (
+          result.products.map((res) => {
+            return <Card key={res.id} item={res} />;
+          })
+        ) : (
+          <div>Sorry, there is no cards with this title</div>
+        )}
+      </div>
+    </>
   );
 };
 

@@ -18,22 +18,24 @@ function Header() {
   };
 
   return (
-    <header>
-      <nav>
-        <ul>
-          <li>
-            <Link to="/main">Main</Link>
-          </li>
-          <li>
-            <Link to="/">About Us</Link>
-          </li>
-          <li>
-            <Link to="/forms">Form</Link>
-          </li>
-        </ul>
-        <h1>{getPageTitle()}</h1>
-      </nav>
-    </header>
+    <>
+      <header>
+        <nav>
+          <ul>
+            <li>
+              <Link to="/main">Main</Link>
+            </li>
+            <li>
+              <Link to="/">About Us</Link>
+            </li>
+            <li>
+              <Link to="/forms">Form</Link>
+            </li>
+          </ul>
+          <h1>{getPageTitle()}</h1>
+        </nav>
+      </header>
+    </>
   );
 }
 
