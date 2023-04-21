@@ -1,6 +1,6 @@
 import "./notFound.css";
 import { useNavigate } from "react-router-dom";
-
+import React from "react";
 function NotFoundPage() {
   const navigate = useNavigate();
 
@@ -18,3 +18,21 @@ function NotFoundPage() {
 }
 
 export default NotFoundPage;
+
+// import Header from "../Header/Header";
+// import { isRouteErrorResponse, useRouteError } from "react-router-dom";
+// import React from "react";
+
+// export const NotFound = () => {
+//   const error = useRouteError();
+//   return (
+//     <div id="error-page">
+//       <Header />
+//       <h1>404</h1>
+//       <p data-testid="error-text">Sorry, this page doesn&apos;t exist.</p>
+//       <p>
+//         <i> {isRouteErrorResponse(error) && error.statusText}</i>
+//       </p>
+//     </div>
+//   );
+// };

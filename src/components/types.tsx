@@ -24,7 +24,7 @@ export default interface IFormCard {
   file: string;
   gender: string;
 }
-export interface IProducts {
+export type IProducts = {
   id: number;
   title: string;
   description: string;
@@ -33,4 +33,4 @@ export interface IProducts {
   category: string;
   thumbnail: string;
   images: string[];
-}
+};

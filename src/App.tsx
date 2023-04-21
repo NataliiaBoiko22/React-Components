@@ -1,22 +1,25 @@
-import React from "react";
-import Header from "./components/Pages/Header/Header";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import AboutUs from "./components/Pages/AboutUs/AboutUs";
-import NotFound from "./components/Pages/NotFound/NotFound";
-import Main from "./components/Pages/Main/Main";
-import FormPage from "./components/Pages/FormPage/FormPage";
+import { Routes, Route, Navigate } from "react-router-dom";
 
-const App: React.FC = () => {
+import Header from "./components/Pages/Header/Header";
+import React from "react";
+import { Main } from "./components/Pages/Main/Main";
+import About from "./components/Pages/AboutUs/AboutUs";
+import FormPage from "./components/Pages/FormPage/FormPage";
+import NotFound from "./components/Pages/NotFound/NotFound";
+
+import "./App.css";
+
+const App = () => {
   return (
-    <BrowserRouter>
-      <Header />
-      <Routes>
-        <Route path="/main" element={<Main />} />
-        <Route path="/" element={<AboutUs />} />
-        <Route path="*" element={<NotFound />} />
-        <Route path="/forms" element={<FormPage />} />
-      </Routes>
-    </BrowserRouter>
+    <Routes>
+      <Route element={<Header />}>
+        <Route path="/" element={<Main />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/form" element={<FormPage />} />
+      </Route>
+      <Route path="/not-found" element={<NotFound />} />
+      <Route path="*" element={<Navigate to="/not-found" />} />
+    </Routes>
   );
 };
 

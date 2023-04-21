@@ -1,24 +1,32 @@
 import { useState, FormEvent } from "react";
 import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
 import { searchSlice } from "../../../redux/searchSlice";
+import { useDispatch, useSelector } from "react-redux";
 import "./searchBar.css";
-
+import { RootState } from "../../../redux/store";
+import { changeSearchText } from "../../../redux/searchSlice";
+import React from "react";
 const Search = () => {
+  // const dispatch = useDispatch<AppDispatch>();
+
+  const { searchText } = useSelector((state: RootState) => state.curState);
+
   const { setValue } = searchSlice.actions;
-  const value = useAppSelector((state) => state.searchReducer.value);
+  const value = useAppSelector((state) => state.curState);
   const dispatch = useAppDispatch();
   const [search, setSearchValue] = useState(value);
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    if (search.trim() === "") {
-      alert("Please enter your request in the input field");
-      return;
-    }
+    // if (search.trim() === "") {
+    //   alert("Please enter your request in the input field");
+    //   return;
+    // }
   };
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
-    const newSearch = e.target.value.trimStart();
-    setSearchValue(newSearch);
+    dispatch(changeSearchText(e.target.value));
+    // const newSearch = e.target.value.trimStart();
+    // setSearchValue(newSearch);
   };
   const handleEnter = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (event.key === "Enter") {
@@ -27,14 +35,14 @@ const Search = () => {
   };
 
   return (
-    <header className="Searchbar">
+    <div className="Searchbar">
       <form className="SearchForm" onSubmit={handleSubmit}>
         <input
           type="text"
           className="SearchFormInput"
           autoComplete="off"
           autoFocus
-          value={search}
+          // value={search}
           placeholder="Enter your request"
           onChange={handleInputChange}
           onKeyDown={handleEnter}
@@ -50,7 +58,7 @@ const Search = () => {
           Search
         </button>
       </form>
-    </header>
+    </div>
   );
 };
 export default Search;

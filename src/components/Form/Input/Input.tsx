@@ -1,6 +1,5 @@
 import React from "react";
 import "./input.css";
-
 interface IProps extends React.HTMLProps<HTMLInputElement> {
   title: string;
   errorMess?: string | null;

@@ -2,10 +2,10 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import "./form.css";
 import Input from "./Input/Input";
 import Select from "./Select/Select";
-import { IUser } from "components/types";
+import { IUser } from "../types";
 import { useAppDispatch } from "../../redux/hooks";
 import { formSlice } from "../../redux/formSlice";
-
+import React from "react";
 type TUserCard = Omit<IUser, "file"> & {
   agreement: string;
   file: FileList;

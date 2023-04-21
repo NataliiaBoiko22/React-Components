@@ -1,10 +1,11 @@
 import { IUser } from "../../types";
 import "./cardForm.css";
+import React from "react";
 interface UserProps {
   user: IUser;
 }
 
-const CardForm = ({ user }: UserProps) => {
+export const CardForm = ({ user }: UserProps) => {
   const { name, surname, birthday, support, duration, file } = user;
   const imgSrc = file ? URL.createObjectURL(file) : "";
 
@@ -24,5 +25,3 @@ const CardForm = ({ user }: UserProps) => {
     </article>
   );
 };
-
-export default CardForm;

@@ -1,22 +1,38 @@
+/// <reference types="vitest" />
 import { defineConfig } from "vite";
-import { configDefaults } from "vitest/config";
+import svgr from "vite-plugin-svgr";
 import react from "@vitejs/plugin-react";
-import eslint from "vite-plugin-eslint";
+import { resolve } from "path";
+import istanbul from "vite-plugin-istanbul";
 
-// https://vitejs.dev/config/
 export default defineConfig({
-  base: "./",
-  plugins: [react(), eslint()],
+  plugins: [
+    react(),
+    svgr(),
+    istanbul({
+      cypress: true,
+      requireEnv: false,
+    }),
+  ],
+  server: {
+    host: true,
+    port: 5000,
+  },
+  resolve: {
+    alias: {
+      "@src": resolve(__dirname, "src"),
+    },
+  },
   test: {
     globals: true,
     environment: "jsdom",
-    setupFiles: "./src/setupTests.ts",
     coverage: {
-      exclude: [...(configDefaults.coverage.exclude || [])],
-      all: true,
-      src: ["src"],
-      provider: "c8",
-      reporter: ["text"],
+      provider: "istanbul",
     },
   },
+  optimizeDeps: { include: ["react/jsx-dev-runtime"] },
+  build: {
+    minify: false,
+  },
+  envDir: "./",
 });

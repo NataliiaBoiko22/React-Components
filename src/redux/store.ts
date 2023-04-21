@@ -1,22 +1,21 @@
-import { combineReducers, configureStore } from "@reduxjs/toolkit";
-import { Api } from "../Api/Api";
-import formReducer from "../redux/formSlice";
-import searchReducer from "../redux/searchSlice";
+import { configureStore } from "@reduxjs/toolkit";
+import searchSlice from "./searchSlice";
+import { TypedUseSelectorHook, useSelector } from "react-redux";
 
-const rootReducer = combineReducers({
-  formReducer,
-  searchReducer,
-  [Api.reducerPath]: Api.reducer,
+export const store = configureStore({
+  reducer: {
+    curState: searchSlice,
+  },
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      thunk: {
+        extraArgument: null,
+      },
+      serializableCheck: false,
+    }),
 });
 
-export const setupStore = () => {
-  return configureStore({
-    reducer: rootReducer,
-    middleware: (getDefaultMiddleware) =>
-      getDefaultMiddleware().concat(Api.middleware),
-  });
-};
+export type RootState = ReturnType<typeof store.getState>;
+export type AppDispatch = typeof store.dispatch;
 
-export type RootState = ReturnType<typeof rootReducer>;
-export type AppSore = ReturnType<typeof setupStore>;
-export type AppDispatch = AppSore["dispatch"];
+export const useTypedSelector: TypedUseSelectorHook<RootState> = useSelector;

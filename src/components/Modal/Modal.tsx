@@ -1,54 +1,44 @@
-import { Api } from "../../Api/Api";
 import "./Modal.css";
-
-interface IModalProps {
+import { RootState } from "../../redux/store";
+import { useSelector } from "react-redux";
+import { IProducts } from "../../components/types";
+import { MouseEventHandler } from "react";
+import React from "react";
+interface IModalProps extends IProducts {
   id: number;
-  isOpen: boolean;
-  onClose: () => void;
+  handleModalClick: MouseEventHandler<HTMLDivElement>;
+  handleCloseClick: MouseEventHandler<HTMLDivElement>;
 }
 
-const Modal = ({ isOpen, onClose, id }: IModalProps) => {
-  const {
-    data: product,
-    error,
-    isLoading,
-  } = Api.useFetchSingleProductQuery(id, { skip: !id });
+export const Modal = (props: IModalProps) => {
+  const { smallError, smallLoading } = useSelector(
+    (state: RootState) => state.curState
+  );
 
-  const renderModalContent = () => {
-    if (error) {
-      return <div>Some error.</div>;
-    }
-
-    if (isLoading) {
-      return <div>Loading...</div>;
-    }
-    return (
-      <>
-        <div className="modal-img">
-          <img src={product?.images[0]} alt="product" />
-        </div>
-        <div className="card-title">Title: {product?.title}</div>
-        <div className="card-info">Brand: {product?.brand}</div>
-        <div className="card-info"> Description: {product?.description} </div>
-        <div className="card-info">Category: {product?.category}</div>
-        <div className="card-price">Price: ${product?.price}</div>
-      </>
-    );
-  };
-
-  return isOpen ? (
+  return (
     <div className="modal">
       <div className="modal-overlay" />
-      <div className="modal-card" onClick={(e) => e.stopPropagation()}>
-        <div className="modal-close">
-          <button className="modal-closeBtn" onClick={onClose}>
-            X
-          </button>
+      {!smallError && !smallLoading && (
+        <div className="modal-card" onClick={props.handleModalClick}>
+          <div className="modal-close">
+            <div className="modal-closeBtn" onClick={props.handleCloseClick}>
+              X
+            </div>
+          </div>
+          <div className="modal-content">
+            <div className="modal-img">
+              <img src={props?.images[0]} alt="product" />
+            </div>
+            <div className="card-title">Title: {props?.title}</div>
+            <div className="card-info">Brand: {props?.brand}</div>
+            <div className="card-info">Description: {props?.description}</div>
+            <div className="card-info">Category: {props?.category}</div>
+            <div className="card-price">Price: ${props?.price}</div>
+          </div>
         </div>
-        <div className="modal-content">{renderModalContent()}</div>
-      </div>
+      )}
+      {smallError && <div className="error">{smallError}</div>}
+      {smallLoading && <div>Loading...</div>}
     </div>
-  ) : null;
+  );
 };
-
-export default Modal;

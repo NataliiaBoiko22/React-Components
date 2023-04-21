@@ -1,4 +1,5 @@
 import "./aboutUs.css";
+import React from "react";
 function AboutUsPage() {
   return (
     <div className="wrapper-about">

@@ -1,28 +1,31 @@
-import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+import { createAsyncThunk } from "@reduxjs/toolkit";
 import { IProducts } from "../components/types";
 
-type FetchData = {
-  products: IProducts[];
-};
+export const fetchProducts = createAsyncThunk<IProducts[], string>(
+  "products/fetchProducts",
+  async (text) => {
+    const response = await fetch(
+      text !== ""
+        ? `https://dummyjson.com/products/search?q=${text.toLowerCase()}`
+        : "https://dummyjson.com/products"
+    );
+    if (!response.ok) {
+      throw new Error("Failed to fetch products");
+    }
+    const data = await response.json();
+    console.log(data.products);
+    return data.products;
+  }
+);
 
-export const Api = createApi({
-  reducerPath: "Api",
-  baseQuery: fetchBaseQuery({ baseUrl: "https://dummyjson.com" }),
-  endpoints: (builder) => ({
-    fetchProducts: builder.query<FetchData, string>({
-      query: (text) => {
-        if (text !== "") {
-          return `/products/search?q=${text.toLowerCase()}`;
-        }
-        return "/products";
-      },
-    }),
-    fetchSingleProduct: builder.query<IProducts, number>({
-      query: (id) => {
-        return `/products/${id}`;
-      },
-    }),
-  }),
-});
-
-export const { useFetchProductsQuery } = Api;
+export const fetchSingleProduct = createAsyncThunk<IProducts, number>(
+  "products/fetchSingleProduct",
+  async (id: number) => {
+    const response = await fetch(`https://dummyjson.com/products/${id}`);
+    if (!response.ok) {
+      throw new Error("Failed to fetch product");
+    }
+    const data = await response.json();
+    return data.products[0];
+  }
+);
